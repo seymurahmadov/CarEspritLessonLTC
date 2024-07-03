@@ -1,10 +1,8 @@
 package com.ltc.espritspringboot.controller;
 
-import com.ltc.espritspringboot.dto.CarDto;
+import com.ltc.espritspringboot.dto.CarRequestDto;
+import com.ltc.espritspringboot.dto.CarResponseDto;
 import com.ltc.espritspringboot.service.CarService;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +17,7 @@ public class CarController {
     // 3. Setter Injection
 
 
-    private final  CarService carService;
+    private final CarService carService;
 
     public CarController(CarService carService) {
         this.carService = carService;
@@ -27,12 +25,20 @@ public class CarController {
 
 
     @GetMapping("/getAll")
-    public List<CarDto> getAll() {
+    public List<CarResponseDto> getAll() {
         return carService.getAll();
     }
 
+
+    @GetMapping("find-by-{id}")
+    public CarResponseDto findById(@PathVariable Long id) {
+        CarResponseDto byId = carService.findById(id);
+        return byId;
+
+    }
+
     @PostMapping("/create")
-    public String create(@RequestBody CarDto carDto) {
+    public String create(@RequestBody CarRequestDto carDto) {
         carService.create(carDto);
         return "Success";
     }
@@ -46,7 +52,7 @@ public class CarController {
 
 
     @PutMapping("/update{id}")
-    public String update(@PathVariable Long id, @RequestBody CarDto carDto) {
+    public String update(@PathVariable Long id, @RequestBody CarRequestDto carDto) {
         carService.update(id, carDto);
         return "Success";
 

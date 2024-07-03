@@ -1,15 +1,13 @@
 package com.ltc.espritspringboot.dto;
 
-
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-public class CarDto {
-
+public class CarResponseDto {
     private Long id;
     private String carName;
     private Integer carYear;
-
 
 }

@@ -1,53 +1,85 @@
 package com.ltc.espritspringboot.service;
 
-import com.ltc.espritspringboot.dto.CarDto;
+import com.ltc.espritspringboot.dto.CarRequestDto;
+import com.ltc.espritspringboot.dto.CarResponseDto;
+import com.ltc.espritspringboot.entity.CarEntity;
+import com.ltc.espritspringboot.repository.CarRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class CarService {
 
+    private final CarRepository carRepository;
+    private final ModelMapper modelMapper;
 
-
-    List<CarDto> carDtos = new ArrayList<>();
-
-
-    public List<CarDto> getAll() {
-        return carDtos;
+    public CarService(CarRepository carRepository, ModelMapper modelMapper) {
+        this.carRepository = carRepository;
+        this.modelMapper = modelMapper;
     }
 
-    public String create(@RequestBody CarDto carDto) {
-        carDtos.add(carDto);
+
+    public List<CarResponseDto> getAll() {
+        List<CarEntity> all = carRepository.findAll();
+
+
+        List<CarResponseDto> list = all.stream()
+                .map(item -> modelMapper.map(item, CarResponseDto.class))
+                .toList();
+
+
+        return list;
+
+    }
+
+
+
+    public CarResponseDto findById(Long id) {
+        CarEntity carEntity = carRepository.findById(id).orElseThrow();
+        CarResponseDto sevinc =  modelMapper.map(carEntity, CarResponseDto.class);
+        return sevinc;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public String create( CarRequestDto carDto) {
+        CarEntity car = modelMapper.map(carDto, CarEntity.class);
+        carRepository.save(car);
         return "Car added successfully";
     }
 
-    public String delete(@RequestParam Long id) {
-        carDtos.removeIf(item -> Objects.equals(item.getId(), id));
+
+    public String delete( Long id) {
+        CarEntity carEntity = carRepository.findById(id).orElseThrow();
+        carRepository.delete(carEntity);
         return "Car deleted successfully";
     }
 
 
-    public String update(@PathVariable Long id, @RequestBody CarDto carDto) {
-        for (CarDto item : carDtos) {
-            if (item.getId().equals(id)) {
-
-//
-//                item.builder()
-//                        .id(carDto.getId())
-//                        .carName(carDto.getCarName())
-//                        .carYear(carDto.getCarYear())
-//                        .build();
 
 
-                item.setId(carDto.getId());
-                item.setCarName(carDto.getCarName());
-                item.setCarYear(carDto.getCarYear());
-            }
-        }
+
+
+    public String update( Long id, CarRequestDto carDto) {
+
+        CarEntity humbet = carRepository.findById(id).orElseThrow();
+
+        modelMapper.map(carDto, humbet);
+
+        carRepository.save(humbet);
+
         return "Car updated successfully";
 
     }
