@@ -5,7 +5,9 @@ import com.ltc.espritspringboot.dto.CarResponseDto;
 import com.ltc.espritspringboot.entity.CarEntity;
 import com.ltc.espritspringboot.repository.CarRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
