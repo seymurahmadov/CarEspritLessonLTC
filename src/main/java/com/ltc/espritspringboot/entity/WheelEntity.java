@@ -22,6 +22,6 @@ public class WheelEntity {
     private Integer radius;
 
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "wheelEntityList")
     private List<CarEntity> carEntityList;
 }

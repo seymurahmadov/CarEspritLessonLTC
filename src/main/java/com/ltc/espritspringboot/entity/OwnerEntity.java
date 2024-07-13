@@ -1,6 +1,7 @@
 package com.ltc.espritspringboot.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +24,8 @@ public class OwnerEntity {
     private Integer age;
 
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "ownerEntity")
+    @JsonIgnore
     private List<CarEntity> carEntity;
 
 }

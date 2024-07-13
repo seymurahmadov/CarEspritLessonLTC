@@ -1,7 +1,7 @@
 package com.ltc.espritspringboot.controller;
 
-import com.ltc.espritspringboot.dto.CarRequestDto;
-import com.ltc.espritspringboot.dto.CarResponseDto;
+import com.ltc.espritspringboot.dto.request.CarRequestDto;
+import com.ltc.espritspringboot.dto.response.CarResponseDto;
 import com.ltc.espritspringboot.service.CarService;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,6 +56,12 @@ public class CarController {
         carService.update(id, carDto);
         return "Success";
 
+    }
+
+
+    @PostMapping("find-by-name{carName}")
+    public List<CarResponseDto> findByName(@PathVariable String carName) {
+       return carService.getAllByName(carName);
     }
 
 

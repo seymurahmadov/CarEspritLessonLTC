@@ -1,5 +1,6 @@
 package com.ltc.espritspringboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,9 +28,16 @@ public class CarEntity {
     private EngineEntity engineEntity;
 
     @ManyToOne
+    @JoinColumn(name= "owner_id")
+    @JsonIgnore
     private OwnerEntity ownerEntity;
 
     @ManyToMany
+    @JoinTable(
+            name = "car_wheel",
+            joinColumns = @JoinColumn(name = "car_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
     private List<WheelEntity> wheelEntityList;
 
 }

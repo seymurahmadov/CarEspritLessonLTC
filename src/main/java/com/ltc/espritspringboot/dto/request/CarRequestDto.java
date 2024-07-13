@@ -1,4 +1,4 @@
-package com.ltc.espritspringboot.dto;
+package com.ltc.espritspringboot.dto.request;
 
 
 import lombok.*;
@@ -9,6 +9,7 @@ public class CarRequestDto {
 
     private String carName;
     private Integer carYear;
+    private Long ownerId;
 
 
 }
