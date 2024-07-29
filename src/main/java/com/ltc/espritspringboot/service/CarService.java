@@ -8,9 +8,12 @@ import com.ltc.espritspringboot.repository.CarRepository;
 import com.ltc.espritspringboot.repository.OwnerRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Timer;
 
 @Service
 @Slf4j
@@ -26,6 +29,10 @@ public class CarService {
         this.ownerRepository = ownerRepository;
     }
 
+    public String hello(String name,String surname) {
+        return "Hello " + name + " " + surname;
+
+    }
 
     public List<CarResponseDto> getAll() {
         log.info("Carin get All metodu cagirdim");
@@ -112,5 +119,13 @@ public class CarService {
 
 
         return list;
+    }
+
+
+
+
+    @Scheduled(cron = "0 33 13 * * ?")
+    public void sayCarName() throws InterruptedException {
+        System.out.println("Mercedes " + LocalTime.now());
     }
 }

@@ -3,7 +3,9 @@ package com.ltc.espritspringboot.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 
@@ -13,6 +15,8 @@ import java.util.List;
 @Table(name = "owner")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class OwnerEntity {
 
     @Id
