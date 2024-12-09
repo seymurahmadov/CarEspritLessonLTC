@@ -3,6 +3,7 @@ package com.ltc.espritspringboot.controller;
 import com.ltc.espritspringboot.dto.request.CarRequestDto;
 import com.ltc.espritspringboot.dto.response.CarResponseDto;
 import com.ltc.espritspringboot.service.CarService;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +26,9 @@ public class CarController {
 
 
     @GetMapping("/getAll")
-    public List<CarResponseDto> getAll() {
-        return carService.getAll();
+    public Page<CarResponseDto> getAll(@RequestParam(defaultValue = "0") int pageNumber,
+                                       @RequestParam(defaultValue = "10")int pageSize) {
+        return carService.getAll(pageNumber, pageSize);
     }
 
 

@@ -14,7 +14,7 @@ public class JsoupTurboService {
 
 
 
-    @Scheduled(fixedRate = 5000)
+//    @Scheduled(fixedRate = 5000)
     public void getCars() throws IOException {
 
         int page = 417;
