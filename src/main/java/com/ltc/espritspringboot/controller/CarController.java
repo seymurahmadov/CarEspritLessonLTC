@@ -25,6 +25,11 @@ public class CarController {
     }
 
 
+    @GetMapping("/hello")
+    public String hello() {
+        return "Hello World";
+    }
+
     @GetMapping("/getAll")
     public Page<CarResponseDto> getAll(@RequestParam(defaultValue = "0") int pageNumber,
                                        @RequestParam(defaultValue = "10")int pageSize) {

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: esprit-argo-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: esprit-argo-app
+  template:
+    metadata:
+      labels:
+        app: esprit-argo-app
+    spec:
+      containers:
+        - name: esprit-argo-app
+          image: seymurahmadov14/esprit-argo:v1
+          ports:
+            - containerPort: 8080
