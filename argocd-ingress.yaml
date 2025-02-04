@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd-ingress
+  name: esprit-argo-app
   namespace: argocd
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
@@ -15,6 +15,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: argocd-server
+                name: esprit-argo-app
                 port:
-                  number: 31393  # Eğer ArgoCD'nin NodePort servisi varsa 80 yerine 31343 yaz
+                  number: 80  # Eğer ArgoCD'nin NodePort servisi varsa 80 yerine 31343 yaz
