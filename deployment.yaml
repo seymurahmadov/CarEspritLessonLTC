@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: esprit-argo-app
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: esprit-argo-app
