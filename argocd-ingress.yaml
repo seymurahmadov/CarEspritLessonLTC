@@ -8,13 +8,13 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: 192.168.65.3  # Burayı kendi domain veya IP adresinle değiştir
+    - host: 192.168.65.x  # Yerel IP adresinizi buraya yazın
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: argocd-server
+                name: esprit-argo-app  # Doğru servis adı
                 port:
-                  number: 31393  # Eğer ArgoCD'nin NodePort servisi varsa 80 yerine 31343 yaz
+                  number: 80  # Servis portu
