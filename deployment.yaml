@@ -16,4 +16,4 @@ spec:
         - name: esprit-argo-app
           image: seymurahmadov14/esprit-argo:v1
           ports:
-            - containerPort: 8081
+            - containerPort: 8082
