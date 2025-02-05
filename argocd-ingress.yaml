@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: 192.168.65.3  # Yerel IP adresinizi buraya yazın
+    - host: localhost  # Yerel IP adresinizi buraya yazın
       http:
         paths:
           - path: /
