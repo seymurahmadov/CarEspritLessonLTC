@@ -8,6 +8,7 @@ spec:
     app: esprit-argo-app
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8081
-  type: LoadBalancer
+      port: 80        # Dışarıya açılacak port
+      targetPort: 8081 # Pod'un çalıştığı port
+      nodePort: 31343  # Burada 31343 gibi bir port numarası verebilirsiniz
+  type: NodePort
